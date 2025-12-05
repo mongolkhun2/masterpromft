@@ -1,5 +1,5 @@
 /****************************************************************************************
- * MASTER TEMPLATE v2.4 (Бүх төрлийн бүтээгдэхүүнд ашиглах боломжтой хувилбар)
+ * MASTER TEMPLATE v2.7 (Money Edition - Strict Order)
  * 
  * [ХЭРЭГЛЭХ ЗААВАР]
  * 1. НУУЦ ТОХИРГОО (Script Properties-д оруулна):
@@ -9,8 +9,9 @@
  *      * TEMPLATE_ID
  *      * ADMIN_EMAIL      (Алдааны мэдээлэл очих email хаяг)
  * 
- * 2. ГАРЫН АВЛАГА (Доорх PRODUCT_CONFIG хэсгийг л өөрчилнө):
- *    - Prompt, Бүтээгдэхүүний нэр зэргийг энд бичнэ.
+ * 2. ГАРЫН АВЛАГА:
+ *    - Энэ код нь "Утасны Дугаарын Зурхай" (Digital Destiny) гаргахад зориулагдсан.
+ *    - ЗӨВХӨН "Мөнгө & Бизнес" чиглэлээр тайлан гаргана.
  * 
  * 3. TRIGGER (Цагийн тохиргоо):
  *    - Function: "main"
@@ -19,140 +20,153 @@
  ****************************************************************************************/
 
 /****************************************************************************************
- * I. PRODUCT CONFIGURATION (ЗӨВХӨН ЭНЭ ХЭСГИЙГ ӨӨРЧИЛНӨ)
+ * I. PRODUCT CONFIGURATION (ГАР УТАСНЫ ЗУРХАЙН ТУСГАЙ ТОХИРГОО)
  ****************************************************************************************/
 const PRODUCT_CONFIG = {
   // 1.1 PRODUCT INFO
-  COACH_NAME: "Саруулбат",              
-  PRODUCT_NAME: "Дархлаа Сэргээх Хувийн Төлөвлөгөө", 
+  COACH_NAME: "Digital Numerologist",              
+  PRODUCT_NAME: "Digital Destiny - Утасны Дугаарын Зурхай", 
   SHEET_NAME: "Sheet1",
-  SEND_ERROR_EMAILS: true, // Алдааны email илгээх эсэх
+  SEND_ERROR_EMAILS: true,
 
-  // 1.2 BATCH SETTINGS (Хурд болон Ачааллын тохиргоо)
-  // Нэг удаа ажиллахдаа хэдэн хүнийг боловсруулах вэ? (3-5 байхад тохиромжтой)
+  // 1.2 BATCH SETTINGS
   BATCH_SIZE: 3, 
 
-  // 1.3 AI PROMPT SETTINGS (AI ЗААВАР)
+  // 1.3 AI PROMPT SETTINGS
   PROMPTS: {
-    // SYSTEM ROLE (AI хэн бэ?)
-    SYSTEM_ROLE: `Professional Wellness & Immunity Coach named "Саруулбат"`,
+    // SYSTEM ROLE
+    SYSTEM_ROLE: `Expert Numerologist and Eastern Astrologer specializing in "Digital Feng Shui" and Mobile Number Analysis.`,
     
-    // REFERENCE MATERIAL (Загвар текст, онол, жишээ)
+    // REFERENCE MATERIAL (Focused ONLY on Money/Business)
     REFERENCE_CONTENT: `
-CONTEXT: You are writing a personalized "Immune Recovery & Energy Plan" for a client who is experiencing burnout, fatigue, and stress.
-INPUT DATA: The client provides answers to 12 Yes/No questions about stress, sleep, diet, and symptoms.
+CONTEXT: You are writing a "Mobile Number Horoscope Report" (8 pages long).
+FOCUS: Wealth, Career, Business Success, and Energy Management.
+TONE: Mystical yet Scientific, authoritative, direct ("Та"), and highly professional. 
+FORMATTING: Use EXACTLY the same structure, headers, and EMOJIS as the examples below.
+**CRITICAL**: DO NOT output any introductory text like "Here is the report". START DIRECTLY with the content.
 
-GOAL: Create a HIGHLY PROFESSIONAL, EXTENSIVE, and SCIENTIFIC report. The user wants a detailed book-like experience (approx. 10+ pages in total length).
+KEY ANALYSIS LOGIC (USE THIS LOGIC FOR THE USER):
+1. **Element Calculation**: 1,6=Water; 2,7=Fire; 3,8=Wood; 4,9=Metal; 5,0=Earth (Adjust based on standard numerology if needed, but the user implies 9=Fire, 6=Metal).
+   - *USER'S LOGIC*: 9 is Fire (High Energy), 6 is Metal (Money), 7 is Knowledge/Strategy, 4 is Hard Work.
+2. **Yang/Yin**: Odd=Yang (Speed/Male), Even=Yin (Stability/Female).
+3. **Sum Calculation (Soul Number)**: Sum of all digits -> reduce to single digit (or 11/22).
+   - Sum 4 = Hard Work (No luck, just system).
+   - Sum 11 = Mystic/Diplomat.
+4. **Last 2 Digits**: The "Money Code" or "Ending".
+   - 76 = Strategic Wealth (Mind over Muscle).
+   - 99 = High Stress.
 
-STRUCTURE & CONTENT REQUIREMENTS:
+REQUIRED STRUCTURE (6 SECTIONS):
 
-IMPORTANT: 
-1. **NAME HANDLING**: If the client's name is in Latin script (e.g., "Munkhbat"), you MUST transliterate it to the CORRECT Cyrillic Mongolian spelling (e.g., "Мөнхбат", NOT "Мунхбат").
-2. DO NOT greet the user ("Hello Name"). The document template already contains the greeting. Start DIRECTLY with the content (Introduction).
-3. DO NOT use markdown dividers like "---" or "***". Use standard headers.
+I ХЭСЭГ: ЭНЕРГИЙН ПАСПОРТ 🆔
+- 1. ЭЛЕМЕНТИЙН ТООЦООЛОЛ (Total count of dominant numbers) 🔥
+- 2. ЯН/ИНЬ БАЛАНС (Odd vs Even ratio) ⚡
+- 3. СҮНСНИЙ ТООНЫ БОДОЛТ (Sum of digits) 🏗️
+- 4. ТӨГСГӨЛИЙН КОД (Analysis of last 2 digits) 💎
+- ШИНЖЭЭЧИЙН ДҮГНЭЛТ 🕵️‍♂️
 
-I. ORSHIL (Introduction)
-   - Acknowledge their situation with empathy. 
-   - Explain that their symptoms (fatigue, joint pain) are "SOS" signals, not weakness.
-   - Tone: Encouraging, professional, native Mongolian.
-   - AVOID: "Welcome". USE: "Таны бие танд дохио өгч байна..."
+II ХЭСЭГ: КОДНЫ ГАЖУУДАЛ БА СҮҮДЭР ТАЛ ⚠️
+- Analyze negative aspects regarding MONEY & CAREER: "Hidden Glitch", "Burnout", "Financial Leakage".
+- Mention "Energy Leakage" if elements conflict (e.g. Fire melts Metal = Money loss).
+- ШИНЖЭЭЧИЙН ДҮГНЭЛТ 📉
 
-II. BODY ANALYSIS - THE 3 PILLARS OF LEAKAGE (Energy Leaks)
-   *INSTRUCTION: Write LONG, DETAILED paragraphs for each section.*
+III ХЭСЭГ: ХУВЬ ХҮН БА ДУГААРЫН ЗӨРЧИЛ ⚔️
+- Compare User's Birth Year/Date (Life Path) vs The Phone Number.
+- Example: "You are a Water person (Rat), but your number is Fire. This causes conflict."
 
-   1. СТРЕССИЙН ЦИКЛИЙН ТҮГЖРЭЛ (The Stress Cycle Trap)
-   - Explain Cortisol and Adrenal Fatigue.
-   - Why they can't relax even after work.
-   
-   2. "ЧИМЭЭГҮЙ" ҮРЭВСЭЛ (Silent Inflammation)
-   - Explain how stress + sugar = internal inflammation.
-   - Why their immune system is distracted fighting internal fires instead of viruses.
+IV ХЭСЭГ: НУУЦ БОЛОМЖ БА БАЯЖИХ КОД 💎
+- Identify the strongest career path based on the number.
+- "Smart Money" vs "Hard Money".
+- ШИНЖЭЭЧИЙН ЗӨВЛӨМЖ 📈
 
-   3. БИОЛОГИЙН ЦАГИЙН ХЯМРАЛ (Circadian Rhythm Disruption)
-   - Explain Blue Light vs. Melatonin.
-   - Why they wake up tired.
+V ХЭСЭГ: ЭНЕРГИЙН ЗАСАЛ БА ИДЭВХЖҮҮЛЭЛТ 🛡️
+- **CRITICAL**: Provide "Cures" for Wealth Protection.
+- 1. Wallpaper advice (e.g., Earth element to bridge Fire and Metal). 🏔️
+- 2. Дэлгэцийн түгжээ тайлах код (4 эсвэл 6 оронтой тоо байх ёстой, нийлбэр нь 5 эсвэл 8 байна). 🔢
+- 3. Digital Cleaning. 🗑️
+- 4. Physical Screen integrity (No cracks!). 📱
 
-III. THE RECOVERY STRATEGY (FUEL, FLOW, MINDSET)
-   *INSTRUCTION: Detailed scientific protocols. Explain the "Why" and "How".*
-   
-   1. FUEL (ТЭЖЭЭЛ)
-   - Hydration protocol (Morning warm water).
-   - Sugar Detox explanation.
-   - Intermittent Fasting benefits for immunity.
+VI ХЭСЭГ: АШИГЛАХ ЗААВАР & ЦАГЛАБАР 🕹️
+- 1. Golden Hour (Best time to call/sales). ⏳
+- 2. Danger Zone (When to put phone away). 🚫
+- 3. Activation Mantra. 🗣️
+- 4. Technical Maintenance. 🛡️
+- 🏁 ЭЦСИЙН ДҮГНЭЛТ: "THE MATRIX CLOSED"
 
-   2. FLOW (УРСГАЛ)
-   - Why intense cardio is bad for them right now.
-   - Recommend "Recovery Movement" (Walking, Stretching).
-   - Sun exposure benefits.
-
-   3. MINDSET (СЭТГЭЛ ЗҮЙ)
-   - Digital Sunset protocol.
-   - Box Breathing technique (4-4-4-4).
-
-IV. 7 ХОНОГИЙН ҮЙЛДЛИЙН ТӨЛӨВЛӨГӨӨ (7-Day Action Plan)
-   *INSTRUCTION: This must be very detailed.*
-   - **CRITICAL**: For EACH DAY (Day 1 to Day 7), provide a FULL NARRATIVE.
-     - **Өглөө:** Hydration, Light movement, Breakfast.
-     - **Өдөр:** Lunch choice, Stress management micro-break.
-     - **Орой:** Digital detox routine, Dinner, Sleep prep.
-   - **AVOID SHORT BULLET POINTS**. Write as if you are coaching them in person.
-
-V. БАГШИЙН ЗӨВЛӨГӨӨ (Conclusion)
-   - Powerful motivating closing.
-   - Sign-off: "Таны Wellness Ментор Саруулбат"
-
-TONE:
-- Native Mongolian (Natural flow, correct grammar).
-- Warm but authoritative.
+IMPORTANT:
+- Use the emojis provided in the headers (🆔, 🔥, ⚡, etc.) EXACTLY.
+- Text must be long, detailed, and "Book-like" (Justified alignment is handled by the script, but you must provide the text blocks).
+- Do not use Markdown bold (**text**) excessively in the body, but use it for sub-headers.
     `,
 
-    // PROMPT PART 1: ANALYSIS (Оршил -> Стратеги)
+    // PROMPT PART 1: SECTIONS I, II, III
     PART_1_TEMPLATE: `
 I. ROLE: {{ROLE}}
-II. CLIENT: {{NAME}} (Transliterate Latin to Cyrillic if needed)
-III. DATA: {{DATA}}
-IV. TASK: Write PART 1 of "{{PRODUCT_NAME}}".
-V. SCOPE:
-   - Section I: Introduction (Direct start, no greetings).
-   - Section II: THE 3 PILLARS OF LEAKAGE (Detailed explanation of Cortisol, Inflammation, Melatonin).
-   - Section III: THE RECOVERY STRATEGY (Detailed protocols for Hydration, Fasting, Movement, Breathing).
-   - **DETAIL**: Write extensive paragraphs. Avoid bullet points where possible.
-   - STOP STRICTLY after Section III.
-VI. NEGATIVE CONSTRAINTS:
-   - **DO NOT** write Section IV (7-Day Plan).
-   - **DO NOT** write "IV. 7 ХОНОГИЙН ҮЙЛДЛИЙН ТӨЛӨВЛӨГӨӨ".
-   - **STOP** immediately after the Breathing technique.
-VII. REFERENCE: {{REFERENCE}}
+II. DATA: 
+   - User Name: {{NAME}}
+   - Phone Number & Inputs: {{DATA}}
+III. TASK: Write PART 1 (Sections I, II, III) of the Report.
+IV. CRITICAL INSTRUCTIONS (MUST FOLLOW):
+   1. **DATA PARSING (STRICT ORDER)**:
+      - The {{DATA}} field contains text in this order: **Gender, DOB, Phone** (e.g., "Male, 1996.10.30, 99445342"). 
+      - **YOU MUST EXTRACT 3 VALUES**:
+        - **1. GENDER**: Look for "Male/Эрэгтэй" or "Female/Эмэгтэй". 
+          - *Logic*: Use Gender to analyze Yin/Yang Balance. (Female + High Yang = Stress).
+        - **2. DOB**: Find the Date of Birth (e.g., 19961030, 96/10/30). Convert to YYYY-MM-DD.
+        - **3. PHONE**: Find the phone number (e.g., 99xxxxxx).
+   2. **ACCURACY (CALCULATION)**: 
+      - Use the EXTRACTED Phone Number for all calculations.
+      - Use the EXTRACTED DOB for Section III (Conflict).
+   3. **LENGTH & DETAIL**: 
+      - **DO NOT SUMMARIZE.** The user wants an extensive, book-quality report.
+      - Each subsection (e.g., 1.1, 1.2) must be a full, deep paragraph (approx 150-200 words each).
+      - Total length for Part 1 should be substantial (approx 3-4 pages).
+   4. **FORMATTING**:
+      - **NO MARKDOWN BULLETS** (like * or -). Do not make it look like a list.
+      - Use the provided EMOJIS (🔥, ⚡, etc.) as the ONLY visual markers.
+      - Write in a "Narrative Flow" (Essays, not notes).
+   5. **SCOPE**:
+      - Write Section I (Passport), Section II (Glitches), Section III (Conflict).
+      - STOP strictly after Section III.
+V. REFERENCE (STYLE & LOGIC GUIDE): {{REFERENCE}}
 `,
 
-    // PROMPT PART 2: ACTION PLAN (7 хоногийн төлөвлөгөө -> Төгсгөл)
+    // PROMPT PART 2: SECTIONS IV, V, VI
     PART_2_TEMPLATE: `
 I. ROLE: {{ROLE}}
-II. CLIENT: {{NAME}}
-III. CONTEXT: Continue from Section III.
-IV. TASK: Write PART 2 of "{{PRODUCT_NAME}}".
-V. SCOPE:
-   - Section IV: 7-DAY ACTION PLAN (Day 1 - Day 7).
-   - Section V: Conclusion & Advice.
-   - **INSTRUCTION**: This is the core. IT MUST BE LONG AND DETAILED.
-   - **DO NOT USE SHORT LISTS**. For each time slot (Morning, Afternoon, Evening), write 2-3 sentences explaining the "What" and "Why".
-VI. STRICT FORMAT:
-   - START DIRECTLY with the header: "IV. 7 ХОНОГИЙН ҮЙЛДЛИЙН ТӨЛӨВЛӨГӨӨ".
-   - NO "Here is Part 2".
-   - NO introductory text.
-VII. REFERENCE: {{REFERENCE}}
+II. DATA: 
+   - User Name: {{NAME}}
+   - Phone Number & Inputs: {{DATA}}
+III. TASK: Write PART 2 (Sections IV, V, VI) of the Report.
+IV. CRITICAL INSTRUCTIONS (MUST FOLLOW):
+   1. **FOCUS**:
+      - This report is STRICTLY about **MONEY, BUSINESS & CAREER**. 
+   2. **CONTINUITY**: 
+      - Continue immediately from Section IV. Do not repeat Intro.
+   3. **LENGTH & DETAIL**:
+      - **EXTREME DETAIL REQUIRED.** Do not give short advice.
+      - Section IV, V, and VI must cover approx 3-4 pages total.
+   4. **FORMATTING**:
+      - **NO MARKDOWN LISTS.** Write full, justified paragraphs.
+      - Use exact EMOJIS from reference.
+   5. **CONTENT**:
+      - Section IV: Wealth Code.
+      - Section V: Wealth Protection Cures.
+      - Section VI: Business Timing.
+   6. **Language**: Mongolian (Cyrillic).
+V. REFERENCE (STYLE & LOGIC GUIDE): {{REFERENCE}}
 `
   }
 };
 
 /****************************************************************************************
  * ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
- * II. SYSTEM ENGINE (ЭНДЭЭС ДООШ ГАР ХҮРЭХ ШААРДЛАГАГҮЙ !!!)
- * "Master Template" Logic: Queue System, PDF Generator, API Handler
+ * II. SYSTEM ENGINE (STANDARD)
+ * No changes needed here for the logic, but we ensure it supports the new config.
  * ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
  ****************************************************************************************/
 
-// PROPERTIES HELPER (Нууц тохиргоог татах)
+// PROPERTIES HELPER
 function getProperty(key) {
   const val = PropertiesService.getScriptProperties().getProperty(key);
   if (!val) throw new Error(`MISSING SCRIPT PROPERTY: ${key}. Please set it in File > Project Settings.`);
@@ -161,7 +175,6 @@ function getProperty(key) {
 
 function main() {
   const lock = LockService.getScriptLock();
-  // Try to get lock for 10 seconds. If busy, exit silent (the next trigger will pick it up).
   if (!lock.tryLock(10000)) {
     console.log("System busy, skipping this run.");
     return;
@@ -174,34 +187,25 @@ function main() {
     const rows = sheet.getDataRange().getValues();
     let processedCount = 0;
     
-    // Get Keys once per batch
     const KEYS = {
       GEMINI: getProperty("GEMINI_API_KEY"),
       MANYCHAT: getProperty("MANYCHAT_API_TOKEN"),
       TEMPLATE: getProperty("TEMPLATE_ID")
     };
 
-    // Iterate through rows (Skip header)
     for (let i = 1; i < rows.length; i++) {
-      
-      // BATCH LIMIT CHECK (Prevent Timeout)
-      if (processedCount >= PRODUCT_CONFIG.BATCH_SIZE) {
-        console.log(`Batch limit (${PRODUCT_CONFIG.BATCH_SIZE}) reached. Stopping for now.`);
-        break; 
-      }
+      if (processedCount >= PRODUCT_CONFIG.BATCH_SIZE) break;
 
       const row = rows[i];
-      const name = row[0];        // A: Name
-      const contactID = row[1];   // B: ID
-      const inputData = row[2];   // C: Data
-      const status = row[4];      // E: Status
-      const errorCell = sheet.getRange(i + 1, 6); // F: Error Log
+      const name = row[0];        
+      const contactID = row[1];   
+      const inputData = row[2];   
+      const status = row[4];      
+      const errorCell = sheet.getRange(i + 1, 6); 
 
-      // QUEUE LOGIC: Process only if status is Empty or "PENDING"
       if (!name || !inputData || (status && String(status).startsWith("DONE")) || status === "Processing...") continue;
 
-      // Mark as Processing
-      const statusCell = sheet.getRange(i + 1, 5); // E
+      const statusCell = sheet.getRange(i + 1, 5); 
       statusCell.setValue("Processing...");
       SpreadsheetApp.flush(); 
 
@@ -209,7 +213,9 @@ function main() {
         console.log(`Processing user: ${name}`);
 
         // 1. GEMINI GENERATION
-        let reportText = generateReportGemini(name, inputData, KEYS.GEMINI);
+        let reportResult = generateReportGemini(name, inputData, KEYS.GEMINI);
+        let reportText = reportResult.text;
+        let tokenUsage = reportResult.usage;
 
         // 2. PDF GENERATION
         let pdfUrl = createPdfFromTemplate(name, reportText, KEYS.TEMPLATE);
@@ -218,14 +224,14 @@ function main() {
         sendToManyChat(contactID, pdfUrl, name, KEYS.MANYCHAT);
 
         // 4. FINALIZE
-        sheet.getRange(i + 1, 4).setValue(pdfUrl); // D: URL
+        sheet.getRange(i + 1, 4).setValue(pdfUrl); 
+        sheet.getRange(i + 1, 7).setValue(tokenUsage); 
         
-        // Add Timestamp to DONE status
         const now = new Date();
         const timeString = `${now.getHours()}:${String(now.getMinutes()).padStart(2, '0')}`;
         statusCell.setValue(`DONE (${timeString})`);
         
-        errorCell.setValue(""); // Clear previous errors
+        errorCell.setValue(""); 
         processedCount++;
 
       } catch (err) {
@@ -244,7 +250,7 @@ function main() {
 }
 
 /****************************************
- * 3. AI ENGINE (GENERIC)
+ * 3. AI ENGINE
  ****************************************/
 function generateReportGemini(userName, inputData, apiKey) {
   
@@ -256,21 +262,20 @@ function generateReportGemini(userName, inputData, apiKey) {
     "{{REFERENCE}}": PRODUCT_CONFIG.PROMPTS.REFERENCE_CONTENT
   };
 
-  // BUILD & CALL PART 1
   let prompt1 = PRODUCT_CONFIG.PROMPTS.PART_1_TEMPLATE;
   for (const [key, value] of Object.entries(variables)) {
     prompt1 = prompt1.split(key).join(value);
   }
   let result1 = callGeminiAPI(prompt1, apiKey);
 
-  // BUILD & CALL PART 2
   let prompt2 = PRODUCT_CONFIG.PROMPTS.PART_2_TEMPLATE;
   for (const [key, value] of Object.entries(variables)) {
     prompt2 = prompt2.split(key).join(value);
   }
   let result2 = callGeminiAPI(prompt2, apiKey);
 
-  return result1.text + "\n\n" + result2.text;
+  const totalTokens = (result1.usage || 0) + (result2.usage || 0);
+  return { text: result1.text + "\n\n" + result2.text, usage: totalTokens };
 }
 
 function callGeminiAPI(prompt, apiKey) {
@@ -295,14 +300,15 @@ function callGeminiAPI(prompt, apiKey) {
   const json = JSON.parse(res.getContentText());
   if (json.candidates && json.candidates[0].content) {
       return { 
-          text: json.candidates[0].content.parts[0].text
+          text: json.candidates[0].content.parts[0].text,
+          usage: json.usageMetadata ? json.usageMetadata.totalTokenCount : 0
       };
   }
   throw new Error("Gemini No Candidates: " + res.getContentText());
 }
 
 /****************************************
- * 4. PDF ENGINE (GENERIC)
+ * 4. PDF ENGINE
  ****************************************/
 function createPdfFromTemplate(name, content, templateId) {
   const template = DriveApp.getFileById(templateId);
@@ -316,14 +322,16 @@ function createPdfFromTemplate(name, content, templateId) {
   body.replaceText("{{NAME}}", name); 
   
   // 2. CLEAN TEXT
-  let cleanText = content
+  // Only remove strict markdown that might break formatting, but keep structure.
+  // Also clean AI chatter before the first section.
+  let startIndex = content.indexOf("I ХЭСЭГ");
+  if (startIndex === -1) startIndex = 0;
+
+  let cleanText = content.substring(startIndex)
     .replace(/\*\*/g, "")       
-    .replace(/\*/g, "")         
-    .replace(/##/g, "")         
     .replace(/^#\s/gm, "")      
-    .replace(/[-_]{3,}/g, "")   
-    .replace(/(^\s*[\r\n]){2,}/gm, "\n\n")
-    .replace(/([IVX]+\.\s)/g, "\n\n$1"); 
+    .replace(/(^\s*[\r\n]){2,}/gm, "\n\n");
+    // We keep headers intact as plain text if they are not using Markdown headers
     
   body.replaceText("{{report}}", cleanText);
   body.replaceText("{{REPORT}}", cleanText); 
@@ -331,21 +339,21 @@ function createPdfFromTemplate(name, content, templateId) {
   // 3. FORMATTING (JUSTIFY)
   const paragraphs = body.getParagraphs();
   for (let p of paragraphs) {
+    const text = p.getText();
     const currentAlign = p.getAlignment();
-    if (p.getText().trim().length > 0 && 
+    
+    // Auto-detect headers based on content patterns (e.g., "I ХЭСЭГ", "1.")
+    // If it looks like a header, we can make it bold (optional, requires more complex logic)
+    // For now, we ensure body text is Justified.
+    if (text.trim().length > 0 && 
         currentAlign !== DocumentApp.HorizontalAlignment.CENTER && 
         currentAlign !== DocumentApp.HorizontalAlignment.RIGHT) {
         p.setAlignment(DocumentApp.HorizontalAlignment.JUSTIFY);
     }
   }
-  const listItems = body.getListItems();
-  for (let item of listItems) {
-      item.setAlignment(DocumentApp.HorizontalAlignment.JUSTIFY);
-  }
 
   doc.saveAndClose();
 
-  // 4. EXPORT PDF
   const pdfBlob = UrlFetchApp.fetch(`https://docs.google.com/document/d/${copyId}/export?format=pdf`, {
     headers: { Authorization: "Bearer " + ScriptApp.getOAuthToken() }
   }).getBlob().setName(`${name} - ${PRODUCT_CONFIG.PRODUCT_NAME}.pdf`);
@@ -353,24 +361,18 @@ function createPdfFromTemplate(name, content, templateId) {
   const pdfFile = DriveApp.createFile(pdfBlob);
   pdfFile.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
   
-  // Cleanup
   DriveApp.getFileById(copyId).setTrashed(true);
 
   return pdfFile.getUrl();
 }
 
 /****************************************
- * 5. DELIVERY ENGINE (MANYCHAT)
+ * 5. DELIVERY ENGINE
  ****************************************/
 function sendToManyChat(subscriberId, pdfUrl, name, token) {
   const url = "https://api.manychat.com/fb/sending/sendContent";
-  
   const cleanId = String(subscriberId).trim();
-  if (!cleanId) throw new Error("Subscriber ID is empty.");
-  if (cleanId.toUpperCase().includes("E+")) {
-     throw new Error(`INVALID ID FORMAT: '${cleanId}'. Check Google Sheet formatting.`);
-  }
-
+  
   const payload = {
     "subscriber_id": cleanId, 
     "data": {
@@ -379,7 +381,7 @@ function sendToManyChat(subscriberId, pdfUrl, name, token) {
         "messages": [
           {
             "type": "text",
-            "text": `Сайн байна уу, ${name}? 🌱\n\nТаны "${PRODUCT_CONFIG.PRODUCT_NAME}" бэлэн боллоо. Доорх линк дээр дарж татаж авна уу: 👇\n\n${pdfUrl}`
+            "text": `✨ Сайн байна уу, ${name}? \n\nТаны "Дижитал Зурхай" бэлэн боллоо. 🔮\n\nДоорх линк дээр дарж татаж авна уу: 👇\n\n${pdfUrl}`
           }
         ]
       }
@@ -394,20 +396,8 @@ function sendToManyChat(subscriberId, pdfUrl, name, token) {
   };
   
   const response = UrlFetchApp.fetch(url, options);
-  const responseBody = response.getContentText();
-
   if (response.getResponseCode() !== 200) {
-    throw new Error(`ManyChat HTTP Error: ${responseBody}`);
-  }
-
-  let json;
-  try { json = JSON.parse(responseBody); } catch(e) { throw new Error("Invalid JSON from ManyChat"); }
-
-  if (json.status !== "success") {
-    if (responseBody.includes("Subscriber does not exist")) {
-       throw new Error(`Subscriber ID '${cleanId}' not found.`);
-    }
-    throw new Error(`ManyChat API Error: ${responseBody}`);
+    throw new Error(`ManyChat Error: ${response.getContentText()}`);
   }
 }
 
@@ -416,15 +406,12 @@ function sendToManyChat(subscriberId, pdfUrl, name, token) {
  ****************************************/
 function sendErrorEmail(name, errorMsg) {
   if (!PRODUCT_CONFIG.SEND_ERROR_EMAILS) return;
-  
   try {
-    const adminEmail = getProperty("ADMIN_EMAIL"); // Get email from Script Properties
+    const adminEmail = getProperty("ADMIN_EMAIL"); 
     MailApp.sendEmail({
       to: adminEmail,
       subject: `Error: ${PRODUCT_CONFIG.PRODUCT_NAME}`,
       body: `User: ${name}\nError: ${errorMsg}`
     });
-  } catch (e) {
-    console.error("Failed to send error email: " + e.toString());
-  }
+  } catch (e) { console.error(e); }
 }
