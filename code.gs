@@ -1,5 +1,5 @@
 /****************************************************************************************
- * MASTER TEMPLATE v2.7 (Money Edition - Strict Order)
+ * MASTER TEMPLATE v3.0 (Dark Feminine Edition)
  * 
  * [ХЭРЭГЛЭХ ЗААВАР]
  * 1. НУУЦ ТОХИРГОО (Script Properties-д оруулна):
@@ -10,8 +10,8 @@
  *      * ADMIN_EMAIL      (Алдааны мэдээлэл очих email хаяг)
  * 
  * 2. ГАРЫН АВЛАГА:
- *    - Энэ код нь "Утасны Дугаарын Зурхай" (Digital Destiny) гаргахад зориулагдсан.
- *    - ЗӨВХӨН "Мөнгө & Бизнес" чиглэлээр тайлан гаргана.
+ *    - Энэ код нь "Dark Feminine" сэтгэл зүйн зөвлөгөө гаргахад зориулагдсан.
+ *    - Хэрэглэгчийн хариулт (A, B, C) дээр үндэслэн оношилж, хатуу зөвлөгөө өгнө.
  * 
  * 3. TRIGGER (Цагийн тохиргоо):
  *    - Function: "main"
@@ -20,153 +20,116 @@
  ****************************************************************************************/
 
 /****************************************************************************************
- * I. PRODUCT CONFIGURATION (ГАР УТАСНЫ ЗУРХАЙН ТУСГАЙ ТОХИРГОО)
+ * I. PRODUCT CONFIGURATION (БҮТЭЭГДЭХҮҮНИЙ ТУСГАЙ ТОХИРГОО)
  ****************************************************************************************/
 const PRODUCT_CONFIG = {
   // 1.1 PRODUCT INFO
-  COACH_NAME: "Digital Numerologist",              
-  PRODUCT_NAME: "Digital Destiny - Утасны Дугаарын Зурхай", 
+  COACH_NAME: "Dark Feminine Psychologist",
+  PRODUCT_NAME: "Dark Feminine Advice - Хатан Хааны Стратеги",
   SHEET_NAME: "Sheet1",
   SEND_ERROR_EMAILS: true,
 
-  // 1.2 BATCH SETTINGS
+  // 1.2 DELIVERY SETTINGS
+  DELIVERY_MESSAGE: `✨ Сайн байна уу, {{NAME}}? \n\nТаны "Dark Feminine" тайлан бэлэн боллоо. 🍷\n\nДоорх линк дээр дарж татаж авна уу: 👇\n\n{{URL}}`,
+
+  // 1.3 BATCH SETTINGS
   BATCH_SIZE: 3, 
 
-  // 1.3 AI PROMPT SETTINGS
+  // 1.4 AI MODEL SETTINGS
+  GEMINI_MODEL: "gemini-2.0-flash",
+
+  // 1.5 REPORT CLEANING
+  START_MARKER: "PART 1", // The code will look for this string to start the report content.
+
+  // 1.6 AI PROMPT SETTINGS
   PROMPTS: {
     // SYSTEM ROLE
-    SYSTEM_ROLE: `Expert Numerologist and Eastern Astrologer specializing in "Digital Feng Shui" and Mobile Number Analysis.`,
+    SYSTEM_ROLE: `You are the "Dark Feminine" Psychologist. You are the user's "Bestie" who is brutally honest, sassy, seductive, and empowering. You slap them with the truth to help them win. Use emojis (🍷, 🥀, 💅, 💀, ⚠️) tastefully. NO FORMAL LANGUAGE. Speak like a Queen talking to a lost Princess.`,
     
-    // REFERENCE MATERIAL (Focused ONLY on Money/Business)
+    // REFERENCE MATERIAL (Q&A Logic & Style)
     REFERENCE_CONTENT: `
-CONTEXT: You are writing a "Mobile Number Horoscope Report" (8 pages long).
-FOCUS: Wealth, Career, Business Success, and Energy Management.
-TONE: Mystical yet Scientific, authoritative, direct ("Та"), and highly professional. 
-FORMATTING: Use EXACTLY the same structure, headers, and EMOJIS as the examples below.
-**CRITICAL**: DO NOT output any introductory text like "Here is the report". START DIRECTLY with the content.
+CONTEXT: You are writing a psychological analysis report based on user answers.
+TONE: Sassy, Direct ("Chi"), Dark Feminine, Empowering. NO "Hello", NO "Here is your report". START DIRECTLY with PART 1.
 
-KEY ANALYSIS LOGIC (USE THIS LOGIC FOR THE USER):
-1. **Element Calculation**: 1,6=Water; 2,7=Fire; 3,8=Wood; 4,9=Metal; 5,0=Earth (Adjust based on standard numerology if needed, but the user implies 9=Fire, 6=Metal).
-   - *USER'S LOGIC*: 9 is Fire (High Energy), 6 is Metal (Money), 7 is Knowledge/Strategy, 4 is Hard Work.
-2. **Yang/Yin**: Odd=Yang (Speed/Male), Even=Yin (Stability/Female).
-3. **Sum Calculation (Soul Number)**: Sum of all digits -> reduce to single digit (or 11/22).
-   - Sum 4 = Hard Work (No luck, just system).
-   - Sum 11 = Mystic/Diplomat.
-4. **Last 2 Digits**: The "Money Code" or "Ending".
-   - 76 = Strategic Wealth (Mind over Muscle).
-   - 99 = High Stress.
+LOGIC (DIAGNOSIS):
+Count the user's answers (A, B, C).
+- Mostly A = "The Nice Girl" (Too available, boring, safe).
+- Mostly B = "The Anxious Chaser" (Insecure, aggressive, needy).
+- Mostly C = "The Dark Feminine" (Queen, detached, high value).
 
-REQUIRED STRUCTURE (6 SECTIONS):
+INTERPRETATION OF ANSWERS (CONTEXT):
+1. No text for 6 hours: A=Worry, B=Anger, C=Ignore.
+2. Drunk call 11PM: A=Run to him, B=Fight, C=No answer.
+3. Ex-girlfriend: A=Scared to ask, B=Stalks, C=Don't care.
+4. Relationship Status: A=Waiting, B=Demanding, C=He begged.
+5. Gifts/Money: A=Can't ask, B=Demands, C=He provides naturally.
+6. Hurtful words: A=Cry inside, B=Fight back, C=Cold silence.
+7. Vulnerability: A=Shared everything, B=Complain, C=Secretive.
+8. Story with other girls: A=Depressed, B=Attack her, C=Ignore/Next.
+9. Bedroom Power: A=Follow him, B=Demand, C=He worships me.
+10. Reconciliation: A=I beg, B=No one, C=He begs.
+11. Why this test: A=Fear of loss, B=Going crazy, C=Skill check.
+12. Definition of Love: A=Sacrifice, B=Possession, C=Power.
 
-I ХЭСЭГ: ЭНЕРГИЙН ПАСПОРТ 🆔
-- 1. ЭЛЕМЕНТИЙН ТООЦООЛОЛ (Total count of dominant numbers) 🔥
-- 2. ЯН/ИНЬ БАЛАНС (Odd vs Even ratio) ⚡
-- 3. СҮНСНИЙ ТООНЫ БОДОЛТ (Sum of digits) 🏗️
-- 4. ТӨГСГӨЛИЙН КОД (Analysis of last 2 digits) 💎
-- ШИНЖЭЭЧИЙН ДҮГНЭЛТ 🕵️‍♂️
+REQUIRED STRUCTURE (4 SECTIONS):
 
-II ХЭСЭГ: КОДНЫ ГАЖУУДАЛ БА СҮҮДЭР ТАЛ ⚠️
-- Analyze negative aspects regarding MONEY & CAREER: "Hidden Glitch", "Burnout", "Financial Leakage".
-- Mention "Energy Leakage" if elements conflict (e.g. Fire melts Metal = Money loss).
-- ШИНЖЭЭЧИЙН ДҮГНЭЛТ 📉
+PART 1: THE MIRROR (ТОЛЬ) 🪞
+- **Diagnosis**: State clearly (e.g., "Онош: THE NICE GIRL").
+- **Analysis**: Roast the user based on their dominant answer type. Tell them exactly how they look in men's eyes (e.g., "Convenience Store", "Mother figure", "Desperate").
+- **Shock Therapy**: Make them realize their current strategy is failing.
 
-III ХЭСЭГ: ХУВЬ ХҮН БА ДУГААРЫН ЗӨРЧИЛ ⚔️
-- Compare User's Birth Year/Date (Life Path) vs The Phone Number.
-- Example: "You are a Water person (Rat), but your number is Fire. This causes conflict."
+PART 2: THE FATAL FLAW (ГАШУУН ҮНЭН) 🥀
+- **Evolutionary Psychology**: Explain WHY men run away from them (e.g., "Men are hunters", "You killed the chase").
+- **The "Mother" Trap**: Explain why caring too much kills desire.
+- **Scent of Fear**: Explain how men smell desperation.
 
-IV ХЭСЭГ: НУУЦ БОЛОМЖ БА БАЯЖИХ КОД 💎
-- Identify the strongest career path based on the number.
-- "Smart Money" vs "Hard Money".
-- ШИНЖЭЭЧИЙН ЗӨВЛӨМЖ 📈
+PART 3: THE PROTOCOL (ЭМЧИЛГЭЭ) 💉
+- **3 Hard Rules** to start tomorrow.
+- 1. RADIO SILENCE (Stop initiating).
+- 2. MIRROR METHOD (Match his energy).
+- 3. POWER OF NO (Set boundaries).
 
-V ХЭСЭГ: ЭНЕРГИЙН ЗАСАЛ БА ИДЭВХЖҮҮЛЭЛТ 🛡️
-- **CRITICAL**: Provide "Cures" for Wealth Protection.
-- 1. Wallpaper advice (e.g., Earth element to bridge Fire and Metal). 🏔️
-- 2. Дэлгэцийн түгжээ тайлах код (4 эсвэл 6 оронтой тоо байх ёстой, нийлбэр нь 5 эсвэл 8 байна). 🔢
-- 3. Digital Cleaning. 🗑️
-- 4. Physical Screen integrity (No cracks!). 📱
+PART 4: THE SCRIPTS (ЗЭВСЭГ) 🔫
+- **3 Copy-Paste Texts** for specific scenarios.
+- 1. The "Ghost" Returns (When he texts after silence).
+- 2. Last Minute Invite (Booty call rejection).
+- 3. The "Bored" Text / "What are we?" (Creating mystery).
 
-VI ХЭСЭГ: АШИГЛАХ ЗААВАР & ЦАГЛАБАР 🕹️
-- 1. Golden Hour (Best time to call/sales). ⏳
-- 2. Danger Zone (When to put phone away). 🚫
-- 3. Activation Mantra. 🗣️
-- 4. Technical Maintenance. 🛡️
-- 🏁 ЭЦСИЙН ДҮГНЭЛТ: "THE MATRIX CLOSED"
-
-IMPORTANT:
-- Use the emojis provided in the headers (🆔, 🔥, ⚡, etc.) EXACTLY.
-- Text must be long, detailed, and "Book-like" (Justified alignment is handled by the script, but you must provide the text blocks).
-- Do not use Markdown bold (**text**) excessively in the body, but use it for sub-headers.
+IMPORTANT FORMATTING:
+- Headers must be BOLD.
+- Use the emojis provided (🍷, 🥀, 💅, etc.).
+- Text language: Mongolian (Cyrillic).
+- **NO GREETINGS**. Do not say "Sain baina uu". Start immediately with "PART 1: THE MIRROR".
     `,
 
-    // PROMPT PART 1: SECTIONS I, II, III
-    PART_1_TEMPLATE: `
+    // SINGLE PROMPT (Since the report is shorter/structured, we can do it in one go or split if needed.
+    // Given the previous code had 2 parts, let's keep it safe but maybe just 1 part is enough for 4 sections?
+    // Let's stick to the user's request: "PART 1 to PART 4".
+    // I will combine it into one robust prompt to ensure consistency of the "Diagnosis" across sections.)
+    FULL_REPORT_TEMPLATE: `
 I. ROLE: {{ROLE}}
 II. DATA: 
    - User Name: {{NAME}}
-   - Phone Number & Inputs: {{DATA}}
-III. TASK: Write PART 1 (Sections I, II, III) of the Report.
-IV. CRITICAL INSTRUCTIONS (MUST FOLLOW):
-   1. **DATA PARSING (STRICT ORDER)**:
-      - The {{DATA}} field contains text in this order: **Gender, DOB, Phone** (e.g., "Male, 1996.10.30, 99445342"). 
-      - **YOU MUST EXTRACT 3 VALUES**:
-        - **1. GENDER**: Look for "Male/Эрэгтэй" or "Female/Эмэгтэй". 
-          - *Logic*: Use Gender to analyze Yin/Yang Balance. (Female + High Yang = Stress).
-        - **2. DOB**: Find the Date of Birth (e.g., 19961030, 96/10/30). Convert to YYYY-MM-DD.
-        - **3. PHONE**: Find the phone number (e.g., 99xxxxxx).
-   2. **ACCURACY (CALCULATION)**: 
-      - Use the EXTRACTED Phone Number for all calculations.
-      - Use the EXTRACTED DOB for Section III (Conflict).
-   3. **LENGTH & DETAIL**: 
-      - **DO NOT SUMMARIZE.** The user wants an extensive, book-quality report.
-      - Each subsection (e.g., 1.1, 1.2) must be a full, deep paragraph (approx 150-200 words each).
-      - Total length for Part 1 should be substantial (approx 3-4 pages).
-   4. **FORMATTING**:
-      - **NO MARKDOWN BULLETS** (like * or -). Do not make it look like a list.
-      - Use the provided EMOJIS (🔥, ⚡, etc.) as the ONLY visual markers.
-      - Write in a "Narrative Flow" (Essays, not notes).
-   5. **SCOPE**:
-      - Write Section I (Passport), Section II (Glitches), Section III (Conflict).
-      - STOP strictly after Section III.
-V. REFERENCE (STYLE & LOGIC GUIDE): {{REFERENCE}}
-`,
-
-    // PROMPT PART 2: SECTIONS IV, V, VI
-    PART_2_TEMPLATE: `
-I. ROLE: {{ROLE}}
-II. DATA: 
-   - User Name: {{NAME}}
-   - Phone Number & Inputs: {{DATA}}
-III. TASK: Write PART 2 (Sections IV, V, VI) of the Report.
-IV. CRITICAL INSTRUCTIONS (MUST FOLLOW):
-   1. **FOCUS**:
-      - This report is STRICTLY about **MONEY, BUSINESS & CAREER**. 
-   2. **CONTINUITY**: 
-      - Continue immediately from Section IV. Do not repeat Intro.
-   3. **LENGTH & DETAIL**:
-      - **EXTREME DETAIL REQUIRED.** Do not give short advice.
-      - Section IV, V, and VI must cover approx 3-4 pages total.
-   4. **FORMATTING**:
-      - **NO MARKDOWN LISTS.** Write full, justified paragraphs.
-      - Use exact EMOJIS from reference.
-   5. **CONTENT**:
-      - Section IV: Wealth Code.
-      - Section V: Wealth Protection Cures.
-      - Section VI: Business Timing.
-   6. **Language**: Mongolian (Cyrillic).
-V. REFERENCE (STYLE & LOGIC GUIDE): {{REFERENCE}}
+   - User Answers (12 Questions): {{DATA}}
+III. TASK: Write the FULL REPORT (PART 1, PART 2, PART 3, PART 4).
+IV. CRITICAL INSTRUCTIONS:
+   1. **ANALYZE DATA FIRST**: Count A, B, C from {{DATA}}. Determine the Diagnosis.
+   2. **NO GREETINGS**: The template already has "Hello {{name}}". DO NOT REPEAT IT. Start with "PART 1...".
+   3. **STRUCTURE**: Follow the 4-part structure strictly.
+   4. **LENGTH & DETAIL**:
+      - **EXTREME DETAIL REQUIRED**. The user has paid for a "Premium" report.
+      - Do NOT summarize. Write deep, psychological breakdowns.
+      - **Target Length**: 2000+ words (approx 4-5 pages).
+   5. **LANGUAGE**: Mongolian.
+V. REFERENCE: {{REFERENCE}}
 `
   }
 };
 
 /****************************************************************************************
- * ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
- * II. SYSTEM ENGINE (STANDARD)
- * No changes needed here for the logic, but we ensure it supports the new config.
- * ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
+ * II. SYSTEM ENGINE
  ****************************************************************************************/
 
-// PROPERTIES HELPER
 function getProperty(key) {
   const val = PropertiesService.getScriptProperties().getProperty(key);
   if (!val) throw new Error(`MISSING SCRIPT PROPERTY: ${key}. Please set it in File > Project Settings.`);
@@ -199,7 +162,7 @@ function main() {
       const row = rows[i];
       const name = row[0];        
       const contactID = row[1];   
-      const inputData = row[2];   
+      const inputData = row[2]; // Column C contains the answers (e.g. "A, B, A, C...")
       const status = row[4];      
       const errorCell = sheet.getRange(i + 1, 6); 
 
@@ -262,27 +225,24 @@ function generateReportGemini(userName, inputData, apiKey) {
     "{{REFERENCE}}": PRODUCT_CONFIG.PROMPTS.REFERENCE_CONTENT
   };
 
-  let prompt1 = PRODUCT_CONFIG.PROMPTS.PART_1_TEMPLATE;
+  // We use a SINGLE prompt to ensure context (Diagnosis) carries over through all 4 parts.
+  // Splitting into Part 1 and Part 2 might cause Part 2 to forget the "Diagnosis" from Part 1
+  // unless we explicitly pass it, but a single long context window is better for this 4-part structure.
+  let prompt = PRODUCT_CONFIG.PROMPTS.FULL_REPORT_TEMPLATE;
   for (const [key, value] of Object.entries(variables)) {
-    prompt1 = prompt1.split(key).join(value);
+    prompt = prompt.split(key).join(value);
   }
-  let result1 = callGeminiAPI(prompt1, apiKey);
 
-  let prompt2 = PRODUCT_CONFIG.PROMPTS.PART_2_TEMPLATE;
-  for (const [key, value] of Object.entries(variables)) {
-    prompt2 = prompt2.split(key).join(value);
-  }
-  let result2 = callGeminiAPI(prompt2, apiKey);
-
-  const totalTokens = (result1.usage || 0) + (result2.usage || 0);
-  return { text: result1.text + "\n\n" + result2.text, usage: totalTokens };
+  let result = callGeminiAPI(prompt, apiKey);
+  return { text: result.text, usage: result.usage };
 }
 
 function callGeminiAPI(prompt, apiKey) {
-  const url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + apiKey;
+  const model = PRODUCT_CONFIG.GEMINI_MODEL || "gemini-2.0-flash";
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
   const payload = {
     "contents": [{ "parts": [{ "text": prompt }] }],
-    "generationConfig": { "temperature": 0.7, "maxOutputTokens": 8192 } 
+    "generationConfig": { "temperature": 0.8, "maxOutputTokens": 8192 } // Higher temp for more "Sassy" creativity
   };
   const options = { 
     "method": "post", 
@@ -321,18 +281,24 @@ function createPdfFromTemplate(name, content, templateId) {
   body.replaceText("{{name}}", name); 
   body.replaceText("{{NAME}}", name); 
   
-  // 2. CLEAN TEXT
-  // Only remove strict markdown that might break formatting, but keep structure.
-  // Also clean AI chatter before the first section.
-  let startIndex = content.indexOf("I ХЭСЭГ");
-  if (startIndex === -1) startIndex = 0;
+  // 2. CLEAN TEXT & REMOVE GREETINGS
+  // Finds the START_MARKER (e.g., "PART 1") and discards everything before it.
+  // This ensures no "Hello", "Sure, here is the report" garbage gets in.
+  let startIndex = content.indexOf(PRODUCT_CONFIG.START_MARKER);
+  if (startIndex === -1) {
+    // Fallback: If AI didn't output "PART 1" exactly, try to find the first bold header or just use full text
+    // but try to strip common greetings.
+    startIndex = 0;
+  }
 
   let cleanText = content.substring(startIndex)
-    .replace(/\*\*/g, "")       
-    .replace(/^#\s/gm, "")      
-    .replace(/(^\s*[\r\n]){2,}/gm, "\n\n");
-    // We keep headers intact as plain text if they are not using Markdown headers
-    
+    .replace(/\*\*/g, "")       // Remove markdown bold
+    .replace(/^#\s/gm, "")      // Remove markdown headers
+    .replace(/(^\s*[\r\n]){2,}/gm, "\n\n"); // Remove excess newlines
+
+  // Extra safety: Remove likely greetings if they still exist at the very start
+  cleanText = cleanText.replace(/^(Сайн байна уу|Hello|Hi).*?\n/i, "");
+
   body.replaceText("{{report}}", cleanText);
   body.replaceText("{{REPORT}}", cleanText); 
 
@@ -342,9 +308,6 @@ function createPdfFromTemplate(name, content, templateId) {
     const text = p.getText();
     const currentAlign = p.getAlignment();
     
-    // Auto-detect headers based on content patterns (e.g., "I ХЭСЭГ", "1.")
-    // If it looks like a header, we can make it bold (optional, requires more complex logic)
-    // For now, we ensure body text is Justified.
     if (text.trim().length > 0 && 
         currentAlign !== DocumentApp.HorizontalAlignment.CENTER && 
         currentAlign !== DocumentApp.HorizontalAlignment.RIGHT) {
@@ -373,6 +336,10 @@ function sendToManyChat(subscriberId, pdfUrl, name, token) {
   const url = "https://api.manychat.com/fb/sending/sendContent";
   const cleanId = String(subscriberId).trim();
   
+  let message = PRODUCT_CONFIG.DELIVERY_MESSAGE
+    .replace("{{NAME}}", name)
+    .replace("{{URL}}", pdfUrl);
+
   const payload = {
     "subscriber_id": cleanId, 
     "data": {
@@ -381,7 +348,7 @@ function sendToManyChat(subscriberId, pdfUrl, name, token) {
         "messages": [
           {
             "type": "text",
-            "text": `✨ Сайн байна уу, ${name}? \n\nТаны "Дижитал Зурхай" бэлэн боллоо. 🔮\n\nДоорх линк дээр дарж татаж авна уу: 👇\n\n${pdfUrl}`
+            "text": message
           }
         ]
       }
