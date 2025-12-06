@@ -1,5 +1,5 @@
 /****************************************************************************************
- * MASTER TEMPLATE v3.1 (Dark Feminine - Ultra Long)
+ * MASTER TEMPLATE v4.0 (Dark Feminine - 2-Stage Ultra Long Generation)
  * 
  * [ХЭРЭГЛЭХ ЗААВАР]
  * 1. НУУЦ ТОХИРГОО (Script Properties-д оруулна):
@@ -9,14 +9,9 @@
  *      * TEMPLATE_ID
  *      * ADMIN_EMAIL      (Алдааны мэдээлэл очих email хаяг)
  * 
- * 2. ГАРЫН АВЛАГА:
- *    - Энэ код нь "Dark Feminine" сэтгэл зүйн зөвлөгөө гаргахад зориулагдсан.
- *    - Хэрэглэгчийн хариулт (A, B, C) дээр үндэслэн оношилж, хатуу зөвлөгөө өгнө.
- * 
- * 3. TRIGGER (Цагийн тохиргоо):
- *    - Function: "main"
- *    - Event Source: "Time-driven"
- *    - Type: "Minutes timer" -> "Every 5 minutes"
+ * 2. ТЕХНИКИЙН ТАЙЛБАР:
+ *    - Тайланг "ХЭТ УРТ" (10,000+ токен) болгохын тулд AI-г 2 удаа дуудаж (PART 1-2, PART 3-4),
+ *      үр дүнг нь нэгтгэдэг 2-шатлалт системтэй.
  ****************************************************************************************/
 
 /****************************************************************************************
@@ -46,31 +41,7 @@ const PRODUCT_CONFIG = {
     // SYSTEM ROLE
     SYSTEM_ROLE: `You are the "Dark Feminine" Psychologist. You are the user's "Bestie" who is brutally honest, sassy, seductive, and empowering. You slap them with the truth to help them win. Use emojis (🍷, 🥀, 💅, 💀, ⚠️) tastefully. NO FORMAL LANGUAGE. Speak like a Queen talking to a lost Princess.`,
     
-    // STYLE EXAMPLE (The "Golden Standard" text provided by user)
-    STYLE_EXAMPLE: `
-PART 1: THE MIRROR (ТОЛЬ) 🪞
-Онош: THE ANXIOUS CHASER ⚠️
-За, чиний хариултыг харлаа. Бүгд л "B" гэдэг хариулт байна. Энэ юу гэсэн үг вэ гэхээр чи яг л галзуурсан хүн шиг аашилж байна гэсэн үг! Чи өөрийгөө хараагүй юу? Чи эрчүүдийн араас гүйж, тэднийг хянаж, шаардаж, өмчлөх гээд байна. ‍♀️ Чиний энэ байдал эрчүүдийг айлгаж байгааг ойлгох хэрэгтэй. Чи бол яг л хавч шиг, хавчиж, атгаж, амьсгалуулахгүй байна.
-
-Эрчүүд чамайг юу гэж хардаг вэ?
-* Хэрэгсэл (Tool): Чи түүнийг байнга шалгаж, хаана юу хийж байгааг нь мэдэхийг хүсдэг. Энэ нь чамайг түүний хэрэгцээг хангадаг хэрэгсэл болгож харагдуулж байна.
-* Ээж (Mother): Чи түүнийг байнга загнаж, гомдоллодог. Энэ нь чамайг ээж шиг нь харагдуулж байна. Ээж нь эрчүүдэд таалагддаггүй шүү дээ, ойлгооч!
-* Галзуу хүүхэн (Crazy Woman): Чи уурлаж, тасалж, охин руу нь хүртэл дайрдаг. Энэ нь чамайг галзуу хүүхэн шиг харагдуулж байна. Хэн галзуу хүүхэнтэй хамт байхыг хүсэх вэ? 💀
-
-Шок эмчилгээ: Чиний энэ стратеги огт ажиллахгүй байна! Чи эрчүүдийг түлхэж байна. Тэд чамаас зугтаж байна. Чи өөрийгөө үнэ цэнэгүй болгож байна. Чи өөрийнхөө аз жаргалыг эрчүүдээс хамааралтай болгож байна. ⚠️ Чи өөрчлөгдөхгүй бол ганцаараа үлдэх болно.
-
-PART 2: THE FATAL FLAW (ГАШУУН ҮНЭН) 🥀
-Эволюцийн сэтгэл зүй: Яагаад эрчүүд чамаас зугтдаг вэ?
-Эрчүүд бол анчид. Тэд олзоо хөөж, барьж авахыг хүсдэг. Чи бол олзоо өөрөө барьж өгч байгаатай адилхан. Чи хөөцөлдөх боломжийг нь үгүй хийж байна. Ан хийх сонирхолгүй болсон анчин яах вэ? Мэдээж, зугтана! Тэд хөөцөлдөх хүсэлтэй өөр "олз"-ыг хайна. 🍷
-
-"Ээж" занга: Хэтэрхий их халамжлах нь яагаад хүслийг үгүй хийдэг вэ?
-Эрчүүд халамж хүсдэггүй гэсэн үг биш. Гэхдээ чи хэтэрхий их халамжлаад байна. Чи түүний бүх хэрэгцээг хангаж, түүний төлөө бүх зүйлийг хийж байна. Энэ нь түүнийг чамаас хамааралтай болгож, тачаангуй байдлыг үгүй хийж байна. Тэр чамайг ээж шиг нь хардаг болно. Чи бол ээж биш, харин хатан байх ёстой!
-
-Айдсын үнэр: Эрчүүд яагаад цөхрөлийг үнэрлэдэг вэ?
-Эрчүүд цөхрөлийг үнэрлэж чаддаг. Энэ бол феромонтой холбоотой зүйл биш, харин чиний үйлдэл, хандлагатай холбоотой. Чи түүнд хэтэрхий их анхаарал хандуулж, түүний зөвшөөрлийг авах гэж хичээж, түүнгүйгээр амьдарч чадахгүй байгаагаа харуулж байна. Энэ нь чамайг сул дорой, үнэ цэнэгүй харагдуулж байна. Эрчүүд хүчтэй, өөртөө итгэлтэй эмэгтэйг хүсдэг. 🥀
-`,
-
-    // REFERENCE MATERIAL (Logic)
+    // REFERENCE LOGIC (Shared by both parts)
     REFERENCE_CONTENT: `
 LOGIC (DIAGNOSIS):
 Count the user's answers (A, B, C).
@@ -93,30 +64,63 @@ INTERPRETATION OF ANSWERS (CONTEXT):
 12. Definition of Love: A=Sacrifice, B=Possession, C=Power.
     `,
 
-    FULL_REPORT_TEMPLATE: `
+    // STYLE EXAMPLE (Shared)
+    STYLE_EXAMPLE: `
+[STYLE GUIDE - MIMIC THIS TONE AND FORMAT EXACTLY]
+PART 1: THE MIRROR (ТОЛЬ) 🪞
+Онош: THE ANXIOUS CHASER ⚠️
+За, чиний хариултыг харлаа. Бүгд л "B" гэдэг хариулт байна. Энэ юу гэсэн үг вэ гэхээр чи яг л галзуурсан хүн шиг аашилж байна гэсэн үг! Чи өөрийгөө хараагүй юу? Чи эрчүүдийн араас гүйж, тэднийг хянаж, шаардаж, өмчлөх гээд байна. ‍♀️
+
+Эрчүүд чамайг юу гэж хардаг вэ?
+* Хэрэгсэл (Tool): Чи түүнийг байнга шалгаж, хаана юу хийж байгааг нь мэдэхийг хүсдэг.
+* Ээж (Mother): Чи түүнийг байнга загнаж, гомдоллодог. Энэ нь чамайг ээж шиг нь харагдуулж байна.
+* Галзуу хүүхэн (Crazy Woman): Чи уурлаж, тасалж, охин руу нь хүртэл дайрдаг.
+
+Шок эмчилгээ: Чиний энэ стратеги огт ажиллахгүй байна! Чи эрчүүдийг түлхэж байна.
+`,
+
+    // --- PART 1 TEMPLATE ---
+    PART_1_TEMPLATE: `
+I. ROLE: {{ROLE}}
+II. DATA:
+   - User Name: {{NAME}}
+   - User Answers: {{DATA}}
+III. TASK: Write PART 1 and PART 2 of the report.
+IV. CRITICAL INSTRUCTIONS:
+   1. **ANALYZE DATA**: Determine Diagnosis (Nice Girl / Anxious Chaser / Dark Feminine).
+   2. **NAME & LANGUAGE**:
+      - Keep Name as is (No transliteration).
+      - STRICTLY MONGOLIAN. No foreign words ("ưu tiên").
+   3. **CONTENT (EXTREME DEPTH)**:
+      - **PART 1: THE MIRROR** (Min 800 words): Diagnosis + Deep Analysis. Don't just list points; explain the PSYCHOLOGY behind "Mother", "Tool", etc.
+      - **PART 2: THE FATAL FLAW** (Min 800 words): Evolutionary Psychology. Why men run. The biology of attraction.
+      - **EXPAND**: Write full paragraphs for every bullet point. Use analogies.
+   4. **FORMATTING**:
+      - Add a BLANK LINE after every header/section.
+      - Use BOLD headers and EMOJIS (🍷, 🥀, 💅, 💀, ⚠️).
+   5. **STOP**: Stop strictly after PART 2. Do NOT write Part 3 yet.
+V. REFERENCE: {{REFERENCE}}
+VI. STYLE: {{STYLE_EXAMPLE}}
+`,
+
+    // --- PART 2 TEMPLATE ---
+    PART_2_TEMPLATE: `
 I. ROLE: {{ROLE}}
 II. DATA: 
    - User Name: {{NAME}}
-   - User Answers (12 Questions): {{DATA}}
-III. TASK: Write the FULL REPORT (PART 1, PART 2, PART 3, PART 4).
-IV. STYLE GUIDE (MIMIC THIS EXACTLY):
-   {{STYLE_EXAMPLE}}
-V. CRITICAL INSTRUCTIONS:
-   1. **ANALYZE DATA FIRST**: Count A, B, C from {{DATA}}. Determine the Diagnosis.
-   2. **LENGTH & DEPTH (VERY IMPORTANT)**:
-      - The user complained the previous report was too short.
-      - **YOU MUST EXPAND**. Do not just write 2 sentences per point. Write a paragraph for each bullet point.
-      - **PART 1**: Diagnosis & Analysis (Min 400 words). Roast them hard.
-      - **PART 2**: The Truth (Min 400 words). Deep evolutionary psychology.
-      - **PART 3**: The Protocol (Min 400 words). Detailed instructions for the 3 rules.
-      - **PART 4**: The Scripts (Min 300 words). The exact scripts + explanation why they work.
+   - User Answers: {{DATA}}
+III. TASK: Write PART 3 and PART 4 of the report (Continuing from Part 2).
+IV. CRITICAL INSTRUCTIONS:
+   1. **CONTEXT**: The user has been diagnosed based on {{DATA}}. Continue the advice.
+   2. **CONTENT (EXTREME DEPTH)**:
+      - **PART 3: THE PROTOCOL** (Min 800 words): The 3 Rules (Radio Silence, Mirror, Power of No). Explain HOW to do it step-by-step. What if he calls? What if he texts? Cover all scenarios.
+      - **PART 4: THE SCRIPTS** (Min 600 words): The Text Messages. Explain WHY each word works psychologically.
    3. **FORMATTING**:
-      - Use BOLD headers.
-      - Use EMOJIS (🍷, 🥀, 💅, 💀, ⚠️) exactly like the Style Guide.
-      - Language: Mongolian (Cyrillic).
-   4. **NO GREETINGS**: Start immediately with "PART 1: THE MIRROR".
-VI. REFERENCE LOGIC: {{REFERENCE}}
-VII. STYLE EXAMPLE: {{STYLE_EXAMPLE}}
+      - Add a BLANK LINE after every header/section.
+      - Use BOLD headers and EMOJIS.
+   4. **START**: Start immediately with "**PART 3: THE PROTOCOL**". Do not say "Here is Part 3".
+V. REFERENCE: {{REFERENCE}}
+VI. STYLE: {{STYLE_EXAMPLE}}
 `
   }
 };
@@ -157,7 +161,7 @@ function main() {
       const row = rows[i];
       const name = row[0];        
       const contactID = row[1];   
-      const inputData = row[2]; // Column C contains the answers (e.g. "A, B, A, C...")
+      const inputData = row[2];
       const status = row[4];      
       const errorCell = sheet.getRange(i + 1, 6); 
 
@@ -170,7 +174,7 @@ function main() {
       try {
         console.log(`Processing user: ${name}`);
 
-        // 1. GEMINI GENERATION
+        // 1. GEMINI GENERATION (2 STAGES)
         let reportResult = generateReportGemini(name, inputData, KEYS.GEMINI);
         let reportText = reportResult.text;
         let tokenUsage = reportResult.usage;
@@ -208,7 +212,7 @@ function main() {
 }
 
 /****************************************
- * 3. AI ENGINE
+ * 3. AI ENGINE (2-STAGE SPLIT)
  ****************************************/
 function generateReportGemini(userName, inputData, apiKey) {
   
@@ -221,13 +225,27 @@ function generateReportGemini(userName, inputData, apiKey) {
     "{{STYLE_EXAMPLE}}": PRODUCT_CONFIG.PROMPTS.STYLE_EXAMPLE
   };
 
-  let prompt = PRODUCT_CONFIG.PROMPTS.FULL_REPORT_TEMPLATE;
+  // --- STAGE 1: PART 1 & 2 ---
+  let prompt1 = PRODUCT_CONFIG.PROMPTS.PART_1_TEMPLATE;
   for (const [key, value] of Object.entries(variables)) {
-    prompt = prompt.split(key).join(value);
+    prompt1 = prompt1.split(key).join(value);
   }
+  let result1 = callGeminiAPI(prompt1, apiKey);
 
-  let result = callGeminiAPI(prompt, apiKey);
-  return { text: result.text, usage: result.usage };
+  // --- STAGE 2: PART 3 & 4 ---
+  // Note: We use the same variables so Context/Diagnosis is consistent.
+  let prompt2 = PRODUCT_CONFIG.PROMPTS.PART_2_TEMPLATE;
+  for (const [key, value] of Object.entries(variables)) {
+    prompt2 = prompt2.split(key).join(value);
+  }
+  let result2 = callGeminiAPI(prompt2, apiKey);
+
+  // --- MERGE ---
+  // Join with double newline to ensure clean separation.
+  const fullText = result1.text + "\n\n" + result2.text;
+  const totalTokens = (result1.usage || 0) + (result2.usage || 0);
+
+  return { text: fullText, usage: totalTokens };
 }
 
 function callGeminiAPI(prompt, apiKey) {
@@ -282,10 +300,10 @@ function createPdfFromTemplate(name, content, templateId) {
 
   let cleanText = content.substring(startIndex)
     .replace(/\*\*/g, "")               // Remove Markdown Bold
-    .replace(/^\s*\*\s/gm, "")          // Remove Bullet Points (asterisks at start of line)
-    .replace(/^\s*-\s/gm, "")           // Remove Bullet Points (hyphens at start of line)
+    .replace(/^\s*\*\s/gm, "")          // Remove Bullet Points (asterisks)
+    .replace(/^\s*-\s/gm, "")           // Remove Bullet Points (hyphens)
     .replace(/^#\s/gm, "")              // Remove Markdown Headers
-    .replace(/(^\s*[\r\n]){2,}/gm, "\n\n"); // Remove excess newlines
+    .replace(/(^\s*[\r\n]){2,}/gm, "\n\n"); // Normalize spacing
 
   cleanText = cleanText.replace(/^(Сайн байна уу|Hello|Hi).*?\n/i, "");
 
